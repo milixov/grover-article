@@ -74,7 +74,3 @@ Specific interfaces related to fetched data located at `src/lib/interfaces` incl
 #### Web Services
 
 - React-query queries for fetch API. Located in `src/services/search/index.ts` directory
-
-```
-
-```
