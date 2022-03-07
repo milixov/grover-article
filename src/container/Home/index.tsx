@@ -108,6 +108,7 @@ const HomeContainer = (): JSX.Element => {
           data?.response?.docs?.map((article) => (
             <li
               key={article?.uri}
+              data-testid="article-item"
               className={styles.articleItem}
               onClick={() => handleClickOnArticle(article)}
             >
