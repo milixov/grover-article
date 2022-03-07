@@ -32,7 +32,7 @@ const HomeContainer = (): JSX.Element => {
   const { dispatch } = useContext(GlobalContext);
   const [searchParam, setSearchParam] = useSearchParams();
 
-  let q = searchParam.get("q") || "";
+  let q = searchParam.get("q");
   let page = searchParam.get("page");
   const pageIndex = useMemo(() => parseInt(page || ""), [page]);
 
@@ -61,7 +61,7 @@ const HomeContainer = (): JSX.Element => {
   const handleSearchTextChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleChangeSearchParam({ q: e.target.value });
     if (pageIndex > 0) {
-      handleChangeSearchParam({ page: "0" });
+      handleChangeSearchParam({ page: "0", q: e.target.value });
     } else {
       refetch();
     }
