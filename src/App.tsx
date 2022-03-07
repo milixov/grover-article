@@ -1,24 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Routes, Route } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+
+//container
+import HomeContainer from "./container/Home";
+import ArticleContainer from "container/Article";
+
+import "./App.scss";
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false } },
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <QueryClientProvider client={queryClient}>
+        <Routes>
+          <Route path="/" element={<HomeContainer />} />
+          <Route path="/article/:uri" element={<ArticleContainer />} />
+        </Routes>
+      </QueryClientProvider>
     </div>
   );
 }
