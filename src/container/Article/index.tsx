@@ -10,6 +10,7 @@ import MainLayout from "layout/Main";
 
 //style
 import styles from "./style.module.scss";
+import Button from "components/Button";
 
 const ArticleContainer = (): JSX.Element => {
   const navigate = useNavigate();
@@ -27,12 +28,7 @@ const ArticleContainer = (): JSX.Element => {
 
   return (
     <MainLayout>
-      <button
-        className="uk-button uk-button-link uk-text-primary"
-        onClick={hanldeBackButton}
-      >
-        {`<`} Go to results page
-      </button>
+      <Button onClick={hanldeBackButton}>{`<`} Go to results page</Button>
       <article className={styles.article}>
         <h2>{state?.article?.headline.main}</h2>
         <span className="uk-text-italic">

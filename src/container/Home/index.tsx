@@ -17,6 +17,7 @@ import { Article } from "lib/interfaces";
 
 //style
 import styles from "./style.module.scss";
+import Button from "components/Button";
 
 interface SearchParam {
   page?: string;
@@ -117,21 +118,11 @@ const HomeContainer = (): JSX.Element => {
       <div className={styles.navigation}>
         <div>
           {pageIndex > 0 && (
-            <button
-              className="uk-button uk-button-link uk-text-primary"
-              onClick={handlePreviousPageClick}
-            >
-              Prev page
-            </button>
+            <Button onClick={handlePreviousPageClick}>Prev page</Button>
           )}
         </div>
         <div>
-          <button
-            className="uk-button uk-button-link uk-text-primary"
-            onClick={handleNextPageClick}
-          >
-            Next page
-          </button>
+          <Button onClick={handleNextPageClick}>Next page</Button>
         </div>
       </div>
     </MainLayout>
