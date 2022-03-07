@@ -1,5 +1,5 @@
-import { Link, useParams, useSearchParams } from "react-router-dom";
-import { useEffect, useMemo } from "react";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useMemo, useContext } from "react";
 import debounce from "lodash/debounce";
 
 //components
@@ -7,6 +7,13 @@ import MainLayout from "layout/Main";
 
 //servises
 import { useSearchArticle } from "services/search";
+
+//store
+import { GlobalContext } from "store";
+import { ACTIONS } from "store/actions";
+
+//types
+import { Article } from "lib/interfaces";
 
 //style
 import styles from "./style.module.scss";
@@ -16,9 +23,12 @@ interface SearchParam {
   q?: string;
 }
 
-const FIELD_LIST = ["headline", "uri", "abstract", "pub_date"];
+const FIELD_LIST = ["headline", "uri", "abstract", "pub_date", "web_url"];
+const FILTER = 'document_type:("article")';
 
 const HomeContainer = (): JSX.Element => {
+  const navigate = useNavigate();
+  const { dispatch } = useContext(GlobalContext);
   const [searchParam, setSearchParam] = useSearchParams();
 
   let q = searchParam.get("q");
@@ -29,6 +39,7 @@ const HomeContainer = (): JSX.Element => {
     q,
     page,
     fl: FIELD_LIST.join(","),
+    fq: FILTER,
   });
 
   useEffect(() => {
@@ -73,6 +84,11 @@ const HomeContainer = (): JSX.Element => {
     }
   };
 
+  const handleClickOnArticle = (article: Article) => {
+    dispatch && dispatch({ type: ACTIONS.SET_ARTICLE, value: article });
+    navigate(`/article/${article?.uri?.replace(/nyt:\/\/.*\//, "")}`);
+  };
+
   return (
     <MainLayout>
       <label>
@@ -92,10 +108,12 @@ const HomeContainer = (): JSX.Element => {
         {isFetching && <div uk-spinner="ratio: 1" />}
         {!isFetching &&
           data?.response?.docs?.map((article) => (
-            <li key={article?.uri}>
-              <Link to={article?.uri.replace("nyt://", "")}>
-                {article?.headline?.main}
-              </Link>
+            <li
+              key={article?.uri}
+              className={styles.articleItem}
+              onClick={() => handleClickOnArticle(article)}
+            >
+              {article?.headline?.main}
             </li>
           ))}
       </ul>
