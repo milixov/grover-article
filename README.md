@@ -48,7 +48,7 @@ yarn build
 
 #### Global
 
-- Global Types are located in `global.d.ts` at the root directory
+- Global Types are located in `src/global.d.ts` directory
 
 #### Specific
 
