@@ -9,5 +9,5 @@ export const useSearchArticle: QueryResult<SearchResponse> = (
   useQuery(
     ["search", params.q, params.page],
     () => http.get("/search/v2/articlesearch.json", { params }),
-    { enabled: !!params.page }
+    { enabled: !!params.page, keepPreviousData: true }
   );
