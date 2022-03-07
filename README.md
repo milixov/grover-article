@@ -32,6 +32,18 @@ For building the project and start it on your local machine use:
 npm run build
 # or
 yarn build
+
+
+```
+
+## 🧪 Run tests
+
+For building the project and start it on your local machine use:
+
+```bash
+npm run test
+# or
+yarn test
 ```
 
 ## 🧰 Libraries and tools
@@ -43,6 +55,7 @@ yarn build
 - ✅ UI Library: **[UI Kit](https://getuikit.com/)**
 - ✅ Styling: **SCSS**
 - ✅ Code Quality: **ESLint, Prettier, Husky**
+- ✅ Testing tool: **React-Testing-Library**
 
 ## Types and Interfaces
 
@@ -61,3 +74,7 @@ Specific interfaces related to fetched data located at `src/lib/interfaces` incl
 #### Web Services
 
 - React-query queries for fetch API. Located in `src/services/search/index.ts` directory
+
+```
+
+```
