@@ -37,9 +37,10 @@ const ArticleContainer = (): JSX.Element => {
         <p>{state?.article?.abstract}</p>
       </article>
       <a
+        target="_blank"
+        rel="noreferrer"
         className="uk-link-muted uk-text-primary"
         href={(state?.article?.web_url as string) || "#"}
-        target="_blank"
       >
         Read the full article
       </a>
